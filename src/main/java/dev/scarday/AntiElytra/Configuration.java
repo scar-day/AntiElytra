@@ -1,7 +1,6 @@
 package dev.scarday.AntiElytra;
 
 import eu.okaeri.configs.OkaeriConfig;
-import eu.okaeri.configs.annotation.Comment;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
