@@ -5,8 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
@@ -17,17 +18,17 @@ public class ElytraListener implements Listener {
         configuration = plugin.getConfiguration();
     }
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    public void onElytraGlide(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
+    @EventHandler
+    public void onToggleGlide(EntityToggleGlideEvent e) {
+        if (!(e.getEntity() instanceof Player player)) return;
+        String world = player.getWorld().getName();
 
-        if (!configuration.getWorlds().contains(worldName)) return;
+        if (!configuration.getWorlds().contains(world)) return;
+        ItemStack chest = player.getInventory().getChestplate();
+        if (chest == null || chest.getType() != Material.ELYTRA) return;
 
-        ItemStack chestplate = player.getInventory().getChestplate();
-        if (chestplate == null || chestplate.getType() != Material.ELYTRA) return;
-
-        if (player.isGliding()) {
+        if (e.isGliding()) {
+            e.setCancelled(true);
             player.setGliding(false);
             player.sendActionBar(ColorUtility.colorize(configuration.getMessages().getNoElytra()));
         }
@@ -35,6 +36,9 @@ public class ElytraListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL)
     public void onUseFirework(PlayerInteractEvent event) {
+        if (event.getAction() != Action.RIGHT_CLICK_AIR &&
+                event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
+
         Player player = event.getPlayer();
         String worldName = player.getWorld().getName();
 
