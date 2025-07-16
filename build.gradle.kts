@@ -45,7 +45,7 @@ tasks.shadowJar {
 
 paper {
     main = "$group.AntiElytra.AntiElytra"
-    loader = "$group.AntiElytra.PluginLibrariesLoader"
+    loader = "$group.AntiElytra.loader.PluginLibrariesLoader"
 
     author = "ScarDay"
 

@@ -1,5 +1,6 @@
-package dev.scarday.AntiElytra;
+package dev.scarday.AntiElytra.loader;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import io.papermc.paper.plugin.loader.PluginClasspathBuilder;
 import io.papermc.paper.plugin.loader.PluginLoader;
@@ -18,6 +19,7 @@ import java.util.stream.Stream;
 
 public class PluginLibrariesLoader implements PluginLoader { // https://docs.eldoria.de/pluginyml/libraries/#paper
     private final Gson gson = new Gson();
+
     @Override
     public void classloader(@NotNull PluginClasspathBuilder classpathBuilder) {
         MavenLibraryResolver resolver = new MavenLibraryResolver();

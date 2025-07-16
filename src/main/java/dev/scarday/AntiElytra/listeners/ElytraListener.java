@@ -1,5 +1,10 @@
-package dev.scarday.AntiElytra;
+package dev.scarday.AntiElytra.listeners;
 
+import dev.scarday.AntiElytra.util.ColorUtility;
+import dev.scarday.AntiElytra.configuration.Configuration;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,12 +16,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class ElytraListener implements Listener {
     Configuration configuration;
-
-    public ElytraListener(AntiElytra plugin) {
-        configuration = plugin.getConfiguration();
-    }
 
     @EventHandler
     public void onToggleGlide(EntityToggleGlideEvent e) {

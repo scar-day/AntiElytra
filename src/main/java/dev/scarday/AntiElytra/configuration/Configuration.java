@@ -1,4 +1,4 @@
-package dev.scarday.AntiElytra;
+package dev.scarday.AntiElytra.configuration;
 
 import eu.okaeri.configs.OkaeriConfig;
 import lombok.Data;

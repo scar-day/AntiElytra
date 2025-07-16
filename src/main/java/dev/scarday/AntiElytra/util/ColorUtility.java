@@ -1,4 +1,4 @@
-package dev.scarday.AntiElytra;
+package dev.scarday.AntiElytra.util;
 
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;

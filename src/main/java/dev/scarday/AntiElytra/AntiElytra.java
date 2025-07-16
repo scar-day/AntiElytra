@@ -1,9 +1,14 @@
 package dev.scarday.AntiElytra;
 
+import dev.scarday.AntiElytra.configuration.Configuration;
+import dev.scarday.AntiElytra.listeners.ElytraListener;
+import dev.scarday.AntiElytra.listeners.WorldListener;
+import dev.scarday.AntiElytra.util.ColorUtility;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import lombok.Getter;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -22,7 +27,9 @@ public class AntiElytra extends JavaPlugin {
     }
 
     @Override
-    public void onDisable() {}
+    public void onDisable() {
+        HandlerList.unregisterAll(this);
+    }
 
     private void loadConfiguration() {
         try {
@@ -41,7 +48,7 @@ public class AntiElytra extends JavaPlugin {
     }
 
     private void loadListeners() {
-        pm.registerEvents(new ElytraListener(this), this);
-        pm.registerEvents(new WorldListener(this), this);
+        pm.registerEvents(new ElytraListener(this.configuration), this);
+        pm.registerEvents(new WorldListener(this.configuration), this);
     }
 }
