@@ -1,7 +1,7 @@
 package dev.scarday.AntiElytra.listeners;
 
-import dev.scarday.AntiElytra.util.ColorUtility;
-import dev.scarday.AntiElytra.configuration.Configuration;
+import dev.scarday.AntiElytra.ColorUtility;
+import dev.scarday.AntiElytra.Configuration;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

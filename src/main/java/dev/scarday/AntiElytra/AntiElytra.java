@@ -1,9 +1,7 @@
 package dev.scarday.AntiElytra;
 
-import dev.scarday.AntiElytra.configuration.Configuration;
 import dev.scarday.AntiElytra.listeners.ElytraListener;
 import dev.scarday.AntiElytra.listeners.WorldListener;
-import dev.scarday.AntiElytra.util.ColorUtility;
 import eu.okaeri.configs.ConfigManager;
 import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
 import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
@@ -24,6 +22,8 @@ public class AntiElytra extends JavaPlugin {
     public void onEnable() {
         loadConfiguration();
         loadListeners();
+
+        registerCommand("antielytra", configuration.getCommand().getAliases(), new AntiElytraCommand(this));
     }
 
     @Override

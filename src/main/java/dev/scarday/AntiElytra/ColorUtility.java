@@ -1,4 +1,4 @@
-package dev.scarday.AntiElytra.util;
+package dev.scarday.AntiElytra;
 
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 public class ColorUtility {
     private final MiniMessage MM = MiniMessage.miniMessage();
 
-    public Component colorize(@NotNull String message) {
+    public static Component colorize(@NotNull String message) {
         return MM.deserialize(message);
     }
 }

@@ -1,7 +1,6 @@
 package dev.scarday.AntiElytra.listeners;
 
-import dev.scarday.AntiElytra.util.ColorUtility;
-import dev.scarday.AntiElytra.configuration.Configuration;
+import dev.scarday.AntiElytra.Configuration;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -13,6 +12,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
+
+import static dev.scarday.AntiElytra.ColorUtility.colorize;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -42,7 +43,7 @@ public class WorldListener implements Listener {
     private void sendActionBar(@NotNull Player player) {
         val message = configuration.getMessages().getDisabledWorld();
         if (!message.isEmpty()) {
-            player.sendActionBar(ColorUtility.colorize(message));
+            player.sendActionBar(colorize(message));
         }
     }
 }

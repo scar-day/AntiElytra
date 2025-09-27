@@ -1,6 +1,7 @@
 plugins {
     id("java")
 
+    id("xyz.jpenilla.run-paper") version "2.3.1"
     id("de.eldoria.plugin-yml.paper") version "0.7.1"
     id("com.gradleup.shadow") version("8.3.1")
 }
@@ -26,8 +27,6 @@ dependencies {
     compileOnly("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.8")
     paperLibrary("eu.okaeri:okaeri-configs-serdes-bukkit:5.0.8")
 
-//    implementation("dev.rollczi:litecommands-bukkit:3.10.0")
-
     compileOnly("org.projectlombok:lombok:1.18.38")
     annotationProcessor("org.projectlombok:lombok:1.18.38")
 }
@@ -37,13 +36,13 @@ tasks.shadowJar {
     archiveClassifier.set("")
 }
 
-//tasks.compileJava {
-//    options.compilerArgs.add("-parameters")
-//}
+tasks.runServer {
+    minecraftVersion("1.21.8")
+}
 
 paper {
     main = "$group.AntiElytra.AntiElytra"
-    loader = "$group.AntiElytra.loader.PluginLibrariesLoader"
+    loader = "$group.AntiElytra.PluginLibrariesLoader"
 
     author = "ScarDay"
 
