@@ -1,6 +1,5 @@
 package dev.scarday.AntiElytra.listeners;
 
-import dev.scarday.AntiElytra.ColorUtility;
 import dev.scarday.AntiElytra.Configuration;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +14,8 @@ import org.bukkit.event.entity.EntityToggleGlideEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+
+import static dev.scarday.AntiElytra.ColorUtility.colorize;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
@@ -33,7 +34,7 @@ public class ElytraListener implements Listener {
         if (e.isGliding()) {
             e.setCancelled(true);
             player.setGliding(false);
-            player.sendActionBar(ColorUtility.colorize(configuration.getMessages().getNoElytra()));
+            player.sendActionBar(colorize(configuration.getMessages().getNoElytra()));
         }
     }
 
