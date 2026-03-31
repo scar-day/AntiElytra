@@ -23,6 +23,8 @@ public class Configuration extends OkaeriConfig {
 
     List<String> worlds = List.of("world_the_end");
 
+    String bypassPermission = "antielytra.bypass";
+
     @Data
     @EqualsAndHashCode(callSuper = true)
     @FieldDefaults(level = AccessLevel.PRIVATE)

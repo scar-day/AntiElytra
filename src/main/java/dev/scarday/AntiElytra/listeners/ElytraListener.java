@@ -25,11 +25,7 @@ public class ElytraListener implements Listener {
     @EventHandler
     public void onToggleGlide(EntityToggleGlideEvent e) {
         if (!(e.getEntity() instanceof Player player)) return;
-        String world = player.getWorld().getName();
-
-        if (!configuration.getWorlds().contains(world)) return;
-        ItemStack chest = player.getInventory().getChestplate();
-        if (chest == null || chest.getType() != Material.ELYTRA) return;
+        if (isElytraAllowed(player)) return;
 
         if (e.isGliding()) {
             e.setCancelled(true);
@@ -43,13 +39,8 @@ public class ElytraListener implements Listener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR &&
                 event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
-        Player player = event.getPlayer();
-        String worldName = player.getWorld().getName();
-
-        if (!configuration.getWorlds().contains(worldName)) return;
-
-        ItemStack chestplate = player.getInventory().getChestplate();
-        if (chestplate == null || chestplate.getType() != Material.ELYTRA) return;
+        var player = event.getPlayer();
+        if (isElytraAllowed(player)) return;
 
         ItemStack usedItem = null;
 
@@ -62,5 +53,16 @@ public class ElytraListener implements Listener {
         if (usedItem == null || usedItem.getType() != Material.FIREWORK_ROCKET) return;
 
         event.setCancelled(true);
+    }
+
+    private boolean isElytraAllowed(Player player) { // okey...
+        if (player.hasPermission(configuration.getBypassPermission())) return true;
+        var worldName = player.getWorld().getName();
+
+        if (!configuration.getWorlds().contains(worldName)) return true;
+
+        var chestplate = player.getInventory().getChestplate();
+        if (chestplate == null || chestplate.getType() != Material.ELYTRA) return true;
+        return false;
     }
 }
